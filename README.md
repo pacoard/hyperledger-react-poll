@@ -1,0 +1,1 @@
+# Blockchain-based poll, powered by Hyperledger and React+Redux
