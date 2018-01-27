@@ -1,7 +1,7 @@
 {
-  "name": "react-iweb-boilerplate",
+  "name": "hyperledger-react-poll",
   "version": "2.0.0",
-  "description": "IWEB React Boilerplate",
+  "description": "Blockchain-based poll powered by React+Redux",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
@@ -14,7 +14,7 @@
     "precommit": "cross-env npm run lint && npm test",
     "prepush": "cross-env npm run lint && npm test"
   },
-  "author": "Sonsoles López Pernas <sonsoleslp@hotmail.com>",
+  "author": "Francisco García de la Corte <pacoard@gmail.com>",
   "license": "MIT",
   "jest": {
     "setupFiles": [
@@ -69,7 +69,9 @@
     "node-sass": "4.5.3",
     "open-browser-webpack-plugin": "0.0.5",
     "react-addons-test-utils": "15.6.2",
+    "react-redux": "^5.0.6",
     "react-test-renderer": "16.0.0",
+    "redux": "^3.7.2",
     "rimraf": "2.6.2",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0",
