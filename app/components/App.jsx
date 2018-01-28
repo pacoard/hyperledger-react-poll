@@ -1,23 +1,33 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import { selectSideElement } from '../reducers/actions';
-import { SIDE_ELEMENTS } from '../constants/constants';
+//import { selectSideElement } from '../reducers/actions'
+//import { SIDE_ELEMENTS } from '../constants/constants'
 
+import SideBar from './SideBar'
 
 class App extends React.Component {
-  render() {
-    return ( 
-    <div className="wrapper">
-	    <SideBar />
-	    <div className="main-panel">
-	    	<NavBar />
-	        <MainContent />
-	        <Footer/>
-	    </div>
-    </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+		//this.appSideClick = this.appSideClick.bind(this);
+	}
+
+	/*appSideClick(sideElement) {
+		this.props.dispatch(selectSideElement(sideElement));
+	}*/
+
+	render() {
+		return ( 
+			<div className="wrapper">
+			    <SideBar />
+			    <div className="main-panel">
+			    	<NavBar />
+			        <MainContent />
+			        <Footer/>
+			    </div>
+			</div>
+		);
+	}
 
 }
 
@@ -81,63 +91,6 @@ class NavBar extends React.Component {
 	                </div>
 	            </div>
 	        </nav>
-		);
-	}
-}
-
-class SideBar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {activeName: null};
-	}
-	render() {
-		return ( //<!-- className="active" -->
-		<div className="sidebar" data-background-color="white" data-active-color="danger">
-	    	<div className="sidebar-wrapper">
-	            <div className="logo">
-	                <a href="#" className="simple-text">
-	                    Hyperledger Poll
-	                </a>
-	            </div>
-	            <ul className="nav">
-				{SIDE_ELEMENTS.map((e, i) => 
-					<SideElement 
-						name={e.name} 
-						link={e.link}
-						icon={e.icon}
-						selected={e.selected}/>)
-					}
-	            </ul>
-
-	    	</div>
-	    </div>
-		);
-	}
-}
-
-class SideElement extends React.Component {
-	constructor(props) {
-		super(props);
-		this.handleClick = this.handleClick.bind(this);
-	}
-	handleClick(e) {
-		//this.props.selected = true;
-		//dispatch(selectSideElement(this));
-		//this.store.dispatch(selectSideElement(this));
-	}
-	render() {
-		let className = '';
-		/*if (this.props.selected) {
-			className = 'active';
-		}*/
-		
-		return(
-			<li className={className}>  
-		        <a href="#" onClick={this.handleClick}>
-		            <i className={this.props.icon}></i>
-		            <p>{this.props.name}</p>
-		        </a>
-		    </li>
 		);
 	}
 }

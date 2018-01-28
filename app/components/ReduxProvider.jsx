@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { SIDE_ELEMENTS } from '../constants/constants';
-import {selectSideElement} from '../reducers/actions';
+import { selectSideElement } from '../reducers/actions';
 import App from './App';
 
 export default class ReduxProvider extends React.Component {
