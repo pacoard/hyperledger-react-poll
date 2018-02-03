@@ -1,0 +1,52 @@
+/**
+ * Access control rules for tutorial-network
+ * 
+ * https://ibm-blockchain.github.io/develop/reference/acl_language.html
+ */
+
+/*
+rule Default {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: ALL
+    resource: "net.biz.poll.*"
+    action: ALLOW
+}
+*/
+// Transactions: CreatePoll, DeletePoll, AnswerPoll
+
+/**
+ * Sample access control list.
+ */
+rule EverybodyCanReadEverything {
+    description: "Allow all participants read access to all resources"
+    participant: "ANY"
+    operation: READ
+    resource: "net.biz.poll.*"
+    action: ALLOW
+}
+
+rule EverybodyCanAnswerPolls {
+    description: "Allow all participants to answer polls"
+    participant: "ANY"
+    operation: CREATE
+    resource: "net.biz.poll.AnswerPoll"
+    action: ALLOW
+}
+
+rule OwnerHasFullAccessToTheirAssets {
+    description: "Allow all participants full access to their assets"
+    participant(p): "net.biz.poll.PollOwner"
+    operation: ALL
+    resource(r): "net.biz.poll.Poll"
+    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule SystemACL {
+  description:  "System ACL to permit all access"
+  participant: "ANY"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}

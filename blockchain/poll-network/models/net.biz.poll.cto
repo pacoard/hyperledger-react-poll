@@ -1,0 +1,52 @@
+/**
+ * Poll network definitions
+ *
+ * https://ibm-blockchain.github.io/develop/reference/cto_language.html
+ */
+
+namespace net.biz.poll
+
+// Participant and Asset need an identifying field
+participant PollOwner identified by email {
+  o String email
+}
+
+asset Poll identified by pollId {
+    o String pollId
+    o PollObject pollObject
+    --> PollOwner pollOwner
+}
+concept Question {
+	o String text
+	o String[] options
+	o Integer[] count
+}
+concept Answer {
+	o String[] options
+	o Integer[] count
+}
+
+concept PollObject {
+	o String title
+	o Question[] questions
+}
+transaction CreatePoll {
+  o String pollId
+  o PollObject pollObject
+  o String date
+  --> PollOwner pollOwner
+}
+transaction DeletePoll {
+	o String date
+  --> Asset Poll
+  --> PollOwner pollOwner
+}
+transaction AnswerPoll {
+  o Answer[] answers
+  o String date
+  --> Poll poll
+}
+
+event LogTransactionEvent {
+	o String log
+}
