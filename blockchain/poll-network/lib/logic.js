@@ -96,7 +96,7 @@ function AnswerPoll(tx) {
         .then(function(asset) {
             // Sum answers to the poll
             for (var i = 0; i < tx.answers.length; i++) {
-                for (var j = 0; j < tx.answers[i].length; j++) {
+                for (var j = 0; j < tx.answers[i].options.length; j++) {
                     asset.pollObject.questions[i].count[j] += tx.answers[i].count[j];
                 }
             }
