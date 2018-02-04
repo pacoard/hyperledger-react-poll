@@ -21,7 +21,7 @@ function emitEvent(namespace, eventname, tx) {
     try {
         emit(event);
     } catch (err) {
-        emitTraceEvent(namespace, "LogInfoEvent", "Emit failed with: ", err);
+        emitTraceEvent(namespace, "LogTransactionEvent", "Emit failed with: ", err);
     }
 }
 
@@ -48,7 +48,7 @@ function CreatePoll(tx) {
         })
         .then(function() {
             // Emit an event for the created asset
-            emitEvent('net.biz.poll', 'Create poll event', tx);
+            emitEvent('net.biz.poll', 'LogTransactionEvent', tx);
         });
 }
 
@@ -60,7 +60,7 @@ function CreatePoll(tx) {
 function DeletePoll(tx) {
     // Get the asset registry for Polls
     var assetRegistry;
-    var id = tx.relatedAsset.assetId;
+    var id = tx.relatedPoll.pollId;
 
     return getAssetRegistry('net.biz.poll.Poll')
         // Get asset that will be updated in this transaction
@@ -74,7 +74,7 @@ function DeletePoll(tx) {
         })
         .then(function() {
             // Emit an event for the created asset
-            emitEvent('net.biz.poll', 'Delete poll event', tx);
+            emitEvent('net.biz.poll', 'LogTransactionEvent', tx);
         });
 }
 
@@ -85,7 +85,7 @@ function DeletePoll(tx) {
  */
 function AnswerPoll(tx) {
     var assetRegistry;
-    var id = tx.relatedAsset.assetId;
+    var id = tx.relatedPoll.pollId;
 
     return getAssetRegistry('net.biz.poll.Poll')
         // Get asset that will be updated in this transaction
@@ -94,10 +94,9 @@ function AnswerPoll(tx) {
             return assetRegistry.get(id);
         })
         .then(function(asset) {
-            asset.value = tx.newValue;
             // Sum answers to the poll
-            for (int i = 0; i < tx.answers.length; i++) {
-                for (int j = 0; j < tx.answers[i].length; j++) {
+            for (var i = 0; i < tx.answers.length; i++) {
+                for (var j = 0; j < tx.answers[i].length; j++) {
                     asset.pollObject.questions[i].count[j] += tx.answers[i].count[j];
                 }
             }
@@ -107,6 +106,6 @@ function AnswerPoll(tx) {
         })
         .then(function() {
             // Emit an event for the created asset
-            emitEvent('net.biz.poll', 'Answer event', tx);
+            emitEvent('net.biz.poll', 'LogTransactionEvent', tx);
         });
 }

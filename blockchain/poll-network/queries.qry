@@ -1,0 +1,16 @@
+/** Queries for the Poll business network
+*/
+
+query selectAllPolls {
+	description: "Select all polls"
+	statement:
+		SELECT net.biz.poll.Poll
+}
+
+
+query selectPollsByOwner {
+	description: "Select all polls based on their owner"
+	statement:
+		SELECT net.biz.poll.Poll
+			WHERE (pollOwner == _$pollOwner)
+}

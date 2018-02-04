@@ -38,15 +38,16 @@ transaction CreatePoll {
 }
 transaction DeletePoll {
 	o String date
-  --> Asset Poll
+  --> Poll relatedPoll
   --> PollOwner pollOwner
 }
 transaction AnswerPoll {
   o Answer[] answers
   o String date
-  --> Poll poll
+  --> Poll relatedPoll
 }
 
 event LogTransactionEvent {
-	o String log
+	o String message
+	o String payload
 }

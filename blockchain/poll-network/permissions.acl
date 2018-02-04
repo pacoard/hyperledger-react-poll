@@ -13,6 +13,14 @@ rule Default {
     action: ALLOW
 }
 */
+
+rule AdminCanDoAnything {
+    description: "Allow admin to do anything"
+    participant: "org.hyperledger.composer.system.NetworkAdmin#admin"
+    operation: ALL
+    resource: "net.biz.poll.*"
+    action: ALLOW
+}
 // Transactions: CreatePoll, DeletePoll, AnswerPoll
 
 /**
@@ -21,7 +29,7 @@ rule Default {
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
     participant: "ANY"
-    operation: READ
+    operation: ALL
     resource: "net.biz.poll.*"
     action: ALLOW
 }

@@ -1,0 +1,35 @@
+HYPERLEDGER COMPOSER/FABRIC COMMANDS
+
+Fabric commands. First, cd into ~/fabric-tools, then:
+
+-- Start fabric
+	./startFabric.sh
+
+-- Stop fabric
+	./stopFabrich.sh (and ./teardownFabrich.sh to completely destroy)
+
+
+Composer commands
+https://ibm-blockchain.github.io/develop/reference/commands.html
+
+-- Generate skeleton
+	yo hyperledger-composer:businessnetwork
+
+-- Generate .bna deployable file (in your-network folder)
+	composer archive create -t dir -n .
+
+-- Install composer runtime
+	composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName your-network
+
+-- Deploy .bna
+	composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile your-network@0.0.1.bna --file networkadmin.card
+
+-- Update .bna
+	composer archive create --sourceType dir --sourceName . -a your-network@0.0.1.bna 
+
+-- Update deployed .bna
+	composer network update -a your-network@0.0.1.bna -c admin@your-network
+
+
+To restart the REST server using the same options, issue the following command:
+   composer-rest-server -c admin@your-network -n never -w true
