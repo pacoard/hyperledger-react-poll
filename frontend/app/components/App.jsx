@@ -15,10 +15,10 @@ class App extends React.Component {
 	render() {
 		return ( 
 			<div className="wrapper">
-			    <SideBar />
+			    <SideBar store={this.props.store}/>
 			    <div className="main-panel">
 			    	<NavBar />
-			        <MainContent />
+			        <MainContent store={this.props.store}/>
 			        <Footer/>
 			    </div>
 			</div>

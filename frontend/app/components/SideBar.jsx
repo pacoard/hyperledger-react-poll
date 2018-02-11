@@ -25,6 +25,7 @@ class SideBar extends React.Component {
 		            <ul className="nav">
 					{this.props.sideElements.map((e, i) => 
 						<SideElement 
+							key={i}
 							name={e.name} 
 							link={e.link}
 							icon={e.icon}

@@ -1,3 +1,4 @@
+//https://themify.me/themify-icons
 export const SIDE_ELEMENTS = [
 	{name: "Polls", 		link: "#", icon: "ti-view-list", selected: false},
 	{name: "New Poll", 		link: "#", icon: "ti-plus", 	 selected: false},
