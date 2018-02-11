@@ -29,7 +29,7 @@ rule AdminCanDoAnything {
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
     participant: "ANY"
-    operation: ALL
+    operation: READ
     resource: "net.biz.poll.*"
     action: ALLOW
 }
@@ -47,7 +47,7 @@ rule OwnerHasFullAccessToTheirAssets {
     participant(p): "net.biz.poll.PollOwner"
     operation: ALL
     resource(r): "net.biz.poll.Poll"
-    condition: (r.owner.getIdentifier() === p.getIdentifier())
+    condition: (r.pollOwner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 

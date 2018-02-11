@@ -5,16 +5,12 @@ import { connect } from 'react-redux'
 //import { SIDE_ELEMENTS } from '../constants/constants'
 
 import SideBar from './SideBar'
+import MainContent from './MainContent'
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		//this.appSideClick = this.appSideClick.bind(this);
 	}
-
-	/*appSideClick(sideElement) {
-		this.props.dispatch(selectSideElement(sideElement));
-	}*/
 
 	render() {
 		return ( 
@@ -31,17 +27,6 @@ class App extends React.Component {
 
 }
 
-class MainContent extends React.Component {
-	render() {
-		return (
-		<div className="content">
-            <div className="container-fluid">
-            dfsasdf
-            </div>
-        </div>
-		);
-	}
-}
 
 class NavBar extends React.Component {
 	render() {

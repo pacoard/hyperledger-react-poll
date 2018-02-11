@@ -4,3 +4,5 @@ export const SIDE_ELEMENTS = [
 	{name: "Delete Poll", 	link: "#", icon: "ti-minus", 	 selected: false},
 	{name: "Log in", 		link: "#", icon: "ti-user", 	 selected: false},
 ];
+
+export const REST_SERVER = "http://localhost:3000";
